@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id                 Int                @id @default(autoincrement()) @map("category_id")
+  name               String?
+  post_in_categories PostInCategories[]
+
+  @@map("categories")
+}
+
+model PostInCategories {
+  category_id Int
+  post_id     Int
+  posts       Post     @relation(fields: [post_id], references: [id])
+  categories  Category @relation(fields: [category_id], references: [id])
+
+  @@unique([post_id, category_id])
+  @@map("post_in_categories")
+}
+
+model Post {
+  author_id          Int?
+  content            String?
+  created_at         DateTime?          @default(now())
+  id                 Int                @id @default(autoincrement()) @map("post_id")
+  title              String
+  post_in_categories PostInCategories[]
+  users              User?              @relation(fields: [author_id], references: [id])
+
+  @@map("posts")
+}
+
+model Profile {
+  bio     String?
+  id      Int     @id @default(autoincrement()) @map("profile_id")
+  user_id Int     @unique
+  users   User    @relation(fields: [user_id], references: [id])
+
+  @@map("profiles")
+}
+
+model User {
+  email    String   @unique
+  name     String?
+  id       Int      @id @default(autoincrement()) @map("user_id")
+  posts    Post[]
+  profiles Profile?
+
+  @@map("users")
+}
