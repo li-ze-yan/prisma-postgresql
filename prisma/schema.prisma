@@ -32,6 +32,7 @@ model Post {
   id                 Int                @id @default(autoincrement()) @map("post_id")
   title              String
   likes              Int                @default(0)
+  views              Int                @default(0)
   published          Boolean            @default(false)
   post_in_categories PostInCategories[]
   users              User?              @relation(fields: [author_id], references: [id])
