@@ -8,11 +8,50 @@ async function main() {
     include: {
       posts: {
         include: {
-          category_id: true,
+          categories: true,
         },
       },
     },
+    data: {
+      name: "郑晗",
+      email: "zhenghan@163.com",
+      posts: {
+        create: [
+          {
+            title: "Prisma makes databases easy",
+            categories: {
+              connectOrCreate: [
+                {
+                  create: { name: "Prisma" },
+                  where: { name: "Prisma" },
+                },
+                {
+                  create: { name: "GraphQL" },
+                  where: { name: "GraphQL" },
+                },
+              ],
+            },
+          },
+          {
+            title: "Follow Prisma on Twitter",
+            categories: {
+              connectOrCreate: [
+                {
+                  create: { name: "Prisma" },
+                  where: { name: "Prisma" },
+                },
+                {
+                  create: { name: "Twitter" },
+                  where: { name: "Twitter" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
   });
+  console.log(JSON.stringify(user));
 }
 
 main()
