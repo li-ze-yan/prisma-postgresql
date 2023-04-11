@@ -11,8 +11,6 @@ async function main() {
         email: "lizeyan@gmail.com",
         role: "ADMIN",
         profileViews: 100,
-        city: "chengdu",
-        country: "China",
       },
       {
         name: "谭坤新",
@@ -84,79 +82,79 @@ async function main() {
       },
     ],
   });
-  const profiles = await prisma.profile.createMany({
+  const profiles = await prisma.extendedProfile.createMany({
     data: [
       {
-        user_id: 1,
-        bio: "我是李泽言",
+        userId: 1,
+        biography: "我是李泽言",
       },
       {
-        user_id: 2,
-        bio: "我是谭坤新",
+        userId: 2,
+        biography: "我是谭坤新",
       },
       {
-        user_id: 3,
-        bio: "我是白晶",
+        userId: 3,
+        biography: "我是白晶",
       },
       {
-        user_id: 4,
-        bio: "我是雷浪",
+        userId: 4,
+        biography: "我是雷浪",
       },
       {
-        user_id: 5,
-        bio: "我是李雨杭",
+        userId: 5,
+        biography: "我是李雨杭",
       },
       {
-        user_id: 6,
-        bio: "我是解岩",
+        userId: 6,
+        biography: "我是解岩",
       },
       {
-        user_id: 7,
-        bio: "我是沈华强",
+        userId: 7,
+        biography: "我是沈华强",
       },
       {
-        user_id: 8,
-        bio: "我是王懿",
+        userId: 8,
+        biography: "我是王懿",
       },
       {
-        user_id: 9,
-        bio: "我是熊原",
+        userId: 9,
+        biography: "我是熊原",
       },
       {
-        user_id: 10,
-        bio: "我是陈昌华",
+        userId: 10,
+        biography: "我是陈昌华",
       },
       {
-        user_id: 11,
-        bio: "我是姜云显",
+        userId: 11,
+        biography: "我是姜云显",
       },
       {
-        user_id: 12,
-        bio: "我是李中文",
+        userId: 12,
+        biography: "我是李中文",
       },
       {
-        user_id: 13,
-        bio: "我是欧相宏",
+        userId: 13,
+        biography: "我是欧相宏",
       },
       {
-        user_id: 14,
-        bio: "我是秦俊杰",
+        userId: 14,
+        biography: "我是秦俊杰",
       },
       {
-        user_id: 15,
-        bio: "我是夏强",
+        userId: 15,
+        biography: "我是夏强",
       },
       {
-        user_id: 16,
-        bio: "我是王钰棂",
+        userId: 16,
+        biography: "我是王钰棂",
       },
       {
-        user_id: 17,
-        bio: "我是张仕传",
+        userId: 17,
+        biography: "我是张仕传",
       },
       {
-        user_id: 18,
-        bio: "我是曾祥涛",
+        userId: 18,
+        biography: "我是曾祥涛",
       },
     ],
   });
@@ -166,41 +164,41 @@ async function main() {
         title: "我是李泽言的帖子",
         content: "我是李泽言的帖子内容",
         published: true,
-        author_id: 1,
+        authorId: 1,
         likes: 100,
       },
       {
         title: "我是谭坤新的帖子",
         content: "我是谭坤新的帖子内容",
-        author_id: 2,
+        authorId: 2,
         likes: 0,
       },
       {
         title: "我是解岩的帖子",
         content: "我是解岩的帖子内容",
         published: true,
-        author_id: 6,
+        authorId: 6,
         likes: 130,
       },
       {
         title: "我是熊原的帖子",
         content: "我是熊原的帖子内容",
         published: true,
-        author_id: 9,
+        authorId: 9,
         likes: 188,
       },
       {
         title: "我是张仕传的帖子",
         content: "我是张仕传的帖子内容",
         published: true,
-        author_id: 17,
+        authorId: 17,
         likes: 178,
       },
       {
         title: "我是曾祥涛的帖子",
         content: "我是李曾祥涛的帖子内容",
         published: true,
-        author_id: 18,
+        authorId: 18,
         likes: 200,
       },
     ],
@@ -233,21 +231,10 @@ async function main() {
       },
     ],
   });
-  const postInCategorys = await prisma.postInCategories.createMany({
-    data: [
-      { category_id: 1, post_id: 1 },
-      { category_id: 2, post_id: 2 },
-      { category_id: 3, post_id: 3 },
-      { category_id: 4, post_id: 4 },
-      { category_id: 5, post_id: 5 },
-      { category_id: 6, post_id: 6 },
-    ],
-  });
   console.log(users);
   console.log(profiles);
   console.log(posts);
   console.log(categorys);
-  console.log(postInCategorys);
 }
 
 main()
