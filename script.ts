@@ -163,20 +163,171 @@ async function main() {
   //     posts: true,
   //   },
   // })
-  // 单条
+  // 单条 疑问？类型错误
   // const updatePost = await prisma.post.update({
   //   where: {
-  //     id: 1,
+  //     id: 10,
   //   },
   //   data: {
-  //     author: {
-  //       disconnect: [{ id: 1 }],
+  //     authorId: {
+  //       disconnect: true,
   //     },
   //   },
   //   include: {
   //     author: true,
   //   },
   // });
+  // 删除所有相关记录
+  // const update = await prisma.user.update({
+  //   where: {
+  //     id: 11,
+  //   },
+  //   data: {
+  //     posts: {
+  //       deleteMany: {},
+  //     },
+  //   },
+  // })
+  // 删除特定的相关记录
+  // const update = await prisma.user.update({
+  //   where: {
+  //     id: 11,
+  //   },
+  //   data: {
+  //     posts: {
+  //       deleteMany: {
+  //         published: false,
+  //       },
+  //     },
+  //   },
+  // })
+  // 通过删除特定帖子更新用户
+  // const update = await prisma.user.update({
+  //   where: {
+  //     id: 6,
+  //   },
+  //   data: {
+  //     posts: {
+  //       deleteMany: [{ id: 7 }],
+  //     },
+  //   },
+  // })
+  // 更新所有的相关记录
+  // const update = await prisma.user.update({
+  //   where: {
+  //     id: 6,
+  //   },
+  //   data: {
+  //     posts: {
+  //       updateMany: {
+  //         where: {
+  //           published: true,
+  //         },
+  //         data: {
+  //           published: false,
+  //         },
+  //       },
+  //     },
+  //   },
+  // })
+  // 更新特定的相关记录
+  // const update = await prisma.user.update({
+  //   where: {
+  //     id: 6,
+  //   },
+  //   data: {
+  //     posts: {
+  //       update: {
+  //         where: {
+  //           id: 9,
+  //         },
+  //         data: {
+  //           title: 'My updated title',
+  //         },
+  //       },
+  //     },
+  //   },
+  // })
+  // 更新或创建相关记录
+  // const update = await prisma.post.update({
+  //   where: {
+  //     id: 6,
+  //   },
+  //   data: {
+  //     author: {
+  //       upsert: {
+  //         create: {
+  //           email: 'bob@prisma.io',
+  //           name: 'Bob the New User',
+  //         },
+  //         update: {
+  //           email: 'bob@prisma.io',
+  //           name: 'Bob the existing user',
+  //         },
+  //       },
+  //     },
+  //   },
+  // })
+  // 将新的相关记录添加的现有记录
+  // const user = await prisma.user.update({
+  //   where: {
+  //     id: 9,
+  //   },
+  //   data: {
+  //     posts: {
+  //       createMany: {
+  //         data: [{ title: 'My first post' }, { title: 'My second post' }],
+  //       },
+  //     },
+  //   },
+  // })
+  // 关系过滤器 -to-many
+  // const users = await prisma.user.findMany({
+  //   where: {
+  //     posts: {
+  //       none: {
+  //         views: {
+  //           gt: 100,
+  //         },
+  //       },
+  //       every: {
+  //         likes: {
+  //           lte: 50,
+  //         },
+  //       },
+  //     },
+  //   },
+  // })
+  // 关系过滤器 -to-one
+  // const users = await prisma.post.findMany({
+  //   where: {
+  //     author: {
+  //       isNot: {
+  //         name: 'Alice',
+  //       },
+  //       is: {
+  //         age: {
+  //           gt: 30,
+  //         }
+  //       }
+  //     }
+  //   }
+  // })
+  // 过滤是否存在相关记录
+  // const usersWithZeroPosts = await prisma.user.findMany({
+  //   where: {
+  //     posts: {
+  //       none: {},
+  //     },
+  //   },
+  // })
+  const usersWithSomePosts = await prisma.user.findMany({
+    where: {
+      posts: {
+        some: {},
+      },
+    },
+  });
 }
 
 main()

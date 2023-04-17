@@ -17,6 +17,7 @@ model ExtendedProfile {
 model User {
   id           Int              @id @default(autoincrement())
   name         String?
+  age          Int?
   email        String           @unique
   profileViews Int              @default(0)
   role         Role             @default(USER)
